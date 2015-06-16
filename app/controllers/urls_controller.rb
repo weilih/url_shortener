@@ -13,7 +13,7 @@ class UrlsController < ApplicationController
     if @url.valid_url? && @url.save
       flash.notice = "SUCCESS"
     else
-      flash.notice = 'INVALID URL'
+      flash.alert = 'INVALID URL'
     end
     redirect_to root_path
   end
@@ -23,7 +23,7 @@ class UrlsController < ApplicationController
       @url.increase_counter
       redirect_to actual_path
     else
-      redirect_to root_path, notice:'NOT IN RECORD'
+      redirect_to root_path, alert:'NOT IN RECORD'
     end
   end
 
