@@ -1,0 +1,6 @@
+url#index <br>
+<%= render @urls %>
+<%= form_for @url, url:create_url_path do |f| %>
+  <%= f.text_field :original %>
+  <%= f.submit %>
+<% end %>
