@@ -1,2 +1,4 @@
 
-<%= url.original %> | <%= link_to url.shorten, goto_url_path(url.shorten), target:"_blank" %><br>
+<%= link_to url.original.truncate(50), url.original, target:"_blank" %> |
+<%= link_to url.shorten, goto_url_path(url.shorten), target:"_blank" %> |
+<%= url.counter %> <br>

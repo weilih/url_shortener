@@ -1,6 +1,7 @@
 url#index <br>
-<%= render @urls %>
+<%= flash[:notice] %><br>
 <%= form_for @url, url:create_url_path do |f| %>
   <%= f.text_field :original %>
-  <%= f.submit %>
+  <%= f.submit 'Generate Short URL'%>
 <% end %>
+<%= render @urls %>
