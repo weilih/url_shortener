@@ -11,9 +11,9 @@ class UrlsController < ApplicationController
     @url.shorten = Url.generate_lorem
 
     if @url.valid_url? && @url.save
-      flash[:notice] = "SUCCESS"
+      flash.notice = "SUCCESS"
     else
-      flash[:notice] = 'INVALID URL'
+      flash.notice = 'INVALID URL'
     end
     redirect_to root_path
   end
@@ -23,8 +23,7 @@ class UrlsController < ApplicationController
       @url.increase_counter
       redirect_to actual_path
     else
-      flash[:notice] = 'INVALID URL'
-      redirect_to root_path
+      redirect_to root_path, notice:'NOT IN RECORD'
     end
   end
 

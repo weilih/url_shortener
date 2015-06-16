@@ -14,7 +14,7 @@ class Url < ActiveRecord::Base
     return false if original.blank?
     self.original = "http://#{original}" if original.match(/^http/).nil?
     uri = URI.parse original
-    uri.kind_of?(URI::HTTP)
+    Net::HTTP.get_response(uri).code == '200'
   rescue
     false
   end

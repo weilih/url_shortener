@@ -1,7 +1,9 @@
 url#index <br>
-<%= flash[:notice] %><br>
 <%= form_for @url, url:create_url_path do |f| %>
-  <%= f.text_field :original %>
-  <%= f.submit 'Generate Short URL'%>
+<div class="form-inline">
+  <%= f.text_field :original, class:"form-control" %>
+  <%= f.submit 'Shorten it!', class:"btn btn-primary" %>
+<%= content_tag :span, flash.notice, class:"alert" if flash.notice %>
+</div>
 <% end %>
 <%= render @urls %>
