@@ -1,7 +1,7 @@
 class UrlsController < ApplicationController
 
   def index
-    @urls = Url.all
+    @urls = Url.order('created_at DESC')
     @url ||= Url.new
   end
 

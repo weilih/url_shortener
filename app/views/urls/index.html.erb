@@ -1,11 +1,11 @@
 <div class="well">
   <%= form_for @url, url:create_url_path do |f| %>
-  <div class="row">
-    <div class="col-xs-8">
-      <%= f.text_field :original, class:"form-control",
-       placeholder:"Paste long URL here" %>
-    </div>
-    <%= f.submit 'Shorten it!', class:"btn btn-primary" %>
+  <div class="input-group">
+    <%= f.text_field :original, class:"form-control",
+     placeholder:"Paste long URL here" %>
+     <span class="input-group-btn">
+       <%= f.submit 'Shorten it!', class:"btn btn-primary" %>
+     </span>
   </div>
   <% end %>
 </div>
@@ -19,25 +19,31 @@
 </div>
 <% end %>
 
-<table class="table table-striped">
+<table class="table table-striped table-hover">
   <thead>
     <tr>
       <td>Original URL</td>
       <td>Shortened URL</td>
       <td class="hidden-xs">Created at</td>
+      <td class="hidden-xs">Last visited</td>
       <td class="hidden-xs">Visited</td>
     </tr>
   </thead>
   <tbody>
-    <% @urls.each do |url| %>
-    <tr>
+  <% @urls.each do |url| %>
+    <%= content_tag :tr, { "data-toggle":"modal", "data-target":"#pop",
+      "data-goto":goto_url_path(url.shorten), "data-long":url.original } do-%>
       <%= content_tag :td, link_to(url.original.truncate(60), url.original,
        target:"_blank") %>
       <%= content_tag :td, link_to(url.shorten, goto_url_path(url.shorten),
        target:"_blank") %>
       <%= content_tag :td, url.created_at.strftime('%F'), class:"hidden-xs" %>
+      <%= content_tag :td, (url.updated_at.strftime('%F') if url.counter > 0),
+       class:"hidden-xs" %>
       <%= content_tag :td, url.counter, class:"hidden-xs" %>
-    </tr>
-    <% end %>
+    <% end -%>
+  <% end %>
   </tbody>
 </table>
+
+<%= render 'urls/modal' %>
