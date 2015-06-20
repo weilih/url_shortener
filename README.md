@@ -1,5 +1,5 @@
 # url_shortener
 execute via
 ```
-rails s
+$ rails s
 ```
