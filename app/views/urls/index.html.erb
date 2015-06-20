@@ -34,13 +34,13 @@
     <%= content_tag :tr, { "data-toggle":"modal", "data-target":"#pop",
       "data-goto":goto_url_path(url.shorten), "data-long":url.original } do-%>
       <%= content_tag :td, link_to(url.original.truncate(60), url.original,
-       target:"_blank") %>
+       target:"_self", class:"no-popup") %>
       <%= content_tag :td, link_to(url.shorten, goto_url_path(url.shorten),
-       target:"_blank") %>
+       target:"_self", class:'no-popup') %>
       <%= content_tag :td, url.created_at.strftime('%F'), class:"hidden-xs" %>
       <%= content_tag :td, (url.updated_at.strftime('%F') if url.counter > 0),
        class:"hidden-xs" %>
-      <%= content_tag :td, url.counter, class:"hidden-xs" %>
+      <%= content_tag :td, url.counter, class:"hidden-xs", class:"v_counter"  %>
     <% end -%>
   <% end %>
   </tbody>
